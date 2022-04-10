@@ -45,7 +45,11 @@ class NowPlaying {
     if (this.callbacks.size == 0)
       NowPlayingNative.startObserving();
   
-    const listener = NowPlayingEventEmitter.addListener("NOW_PLAYING", callback);
+    const listener = NowPlayingEventEmitter.addListener("NOW_PLAYING", (json) => {
+      let nowPlaying = JSON.parse(json);
+
+      callback(nowPlaying);
+    });
 
     this.callbacks.set(identifier, listener);
   }

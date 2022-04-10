@@ -7,6 +7,8 @@ export default function App() {
   const [state, setState] = React.useState<NowPlayingState | undefined>();
 
   const nowPlayingCallback = React.useCallback((state: NowPlayingState) => {
+    console.log(state);
+    
     setState(state);
   }, []);
 

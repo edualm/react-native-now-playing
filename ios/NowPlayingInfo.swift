@@ -10,7 +10,7 @@ struct NowPlayingInfo: Codable {
     let artist: String?
     let album: String?
     
-    let artwork: Data?
+    let artwork: String?
 }
 
 extension NowPlayingInfo {
