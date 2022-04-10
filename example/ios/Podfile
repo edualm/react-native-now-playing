@@ -17,5 +17,16 @@ target 'NowPlayingExample' do
   use_flipper!({ 'Flipper' => '0.80.0' })
   post_install do |installer|
     flipper_post_install(installer)
+    __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
+end
+
+def __apply_Xcode_12_5_M1_post_install_workaround(installer)
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+      end
+  end
+
+  `sed -i -e  $'s/__IPHONE_10_0/__IPHONE_12_0/' Pods/Flipper-Folly/folly/portability/Time.h`
 end

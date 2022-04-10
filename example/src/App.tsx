@@ -1,18 +1,26 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-now-playing';
+import NowPlaying, { NowPlayingState } from 'react-native-now-playing';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [state, setState] = React.useState<NowPlayingState | undefined>();
+
+  const nowPlayingCallback = React.useCallback((state: NowPlayingState) => {
+    setState(state);
+  }, []);
 
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+    NowPlaying.startObserving(nowPlayingCallback, 'default');
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      { state && state.isPlaying ? (
+        <Text>{state.item?.title}</Text>
+      ) : (
+        <Text>Not playing.</Text>
+      ) }
     </View>
   );
 }

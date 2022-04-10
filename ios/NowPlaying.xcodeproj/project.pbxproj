@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-
-		5E555C0D2413F4C50049A1A2 /* NowPlaying.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* NowPlaying.m */; };
-		F4FF95D7245B92E800C19C63 /*  NowPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /*  NowPlaying.swift */; };
-
+		A0001AA82802660000F6205F /* NowPlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0001AA72802660000F6205F /* NowPlayingState.swift */; };
+		A0001AAA2802661400F6205F /* NowPlayingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0001AA92802661400F6205F /* NowPlayingInfo.swift */; };
+		F4FF95D7245B92E800C19C63 /* NowPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /* NowPlaying.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,11 +26,11 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libNowPlaying.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNowPlaying.a; sourceTree = BUILT_PRODUCTS_DIR; };
-
+		A0001AA72802660000F6205F /* NowPlayingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingState.swift; sourceTree = "<group>"; };
+		A0001AA92802661400F6205F /* NowPlayingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingInfo.swift; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* NowPlaying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlaying.m; sourceTree = "<group>"; };
 		F4FF95D5245B92E700C19C63 /* NowPlaying-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NowPlaying-Bridging-Header.h"; sourceTree = "<group>"; };
 		F4FF95D6245B92E800C19C63 /* NowPlaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlaying.swift; sourceTree = "<group>"; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,11 +55,11 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-
 				F4FF95D6245B92E800C19C63 /* NowPlaying.swift */,
+				A0001AA92802661400F6205F /* NowPlayingInfo.swift */,
+				A0001AA72802660000F6205F /* NowPlayingState.swift */,
 				B3E7B5891CC2AC0600A0062D /* NowPlaying.m */,
 				F4FF95D5245B92E700C19C63 /* NowPlaying-Bridging-Header.h */,
-
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -122,10 +121,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
 				F4FF95D7245B92E800C19C63 /* NowPlaying.swift in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* NowPlaying.m in Sources */,
-
+				A0001AA82802660000F6205F /* NowPlayingState.swift in Sources */,
+				A0001AAA2802661400F6205F /* NowPlayingInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,11 +236,9 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = NowPlaying;
 				SKIP_INSTALL = YES;
-
 				SWIFT_OBJC_BRIDGING_HEADER = "NowPlaying-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-
 			};
 			name = Debug;
 		};
@@ -259,10 +255,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = NowPlaying;
 				SKIP_INSTALL = YES;
-
 				SWIFT_OBJC_BRIDGING_HEADER = "NowPlaying-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-
 			};
 			name = Release;
 		};
