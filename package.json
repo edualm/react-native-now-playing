@@ -1,5 +1,5 @@
 {
-  "name": "react-native-now-playing",
+  "name": "@edualm/react-native-now-playing",
   "version": "0.1.0",
   "description": "Get information about what's playing on the user's device.",
   "main": "lib/commonjs/index",

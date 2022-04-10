@@ -1,26 +1,26 @@
-# react-native-now-playing
+# React Native Now Playing
 
 Get information about what's playing on the user's device.
+
+**iOS support is done, Android is a work in progress.**
 
 ## Installation
 
 ```sh
-npm install react-native-now-playing
+npm install @edualm/react-native-now-playing
 ```
 
 ## Usage
 
 ```js
-import { multiply } from "react-native-now-playing";
+import NowPlaying from "react-native-now-playing";
 
 // ...
 
-const result = await multiply(3, 7);
+NowPlaying.startObserving((state) => {
+    console.log(state);
+}, 'default');
 ```
-
-## Contributing
-
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
 
 ## License
 
