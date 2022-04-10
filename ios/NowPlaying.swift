@@ -45,9 +45,6 @@ extension NowPlaying {
             
             let player = MPMusicPlayerController.systemMusicPlayer
             
-            //  Apparently we only get notifications if we call this directly at least once...
-            _ = player.nowPlayingItem?.title
-            
             let notificationTypes: [Notification.Name] = [
                 .MPMusicPlayerControllerNowPlayingItemDidChange,
                 .MPMusicPlayerControllerPlaybackStateDidChange
@@ -61,6 +58,8 @@ extension NowPlaying {
             }
             
             player.beginGeneratingPlaybackNotifications()
+            
+            sendNowPlayingStateToRN(player: player)
         }
     }
     
@@ -75,24 +74,28 @@ extension NowPlaying {
                 return
             }
             
-            let state: NowPlayingState
+            sendNowPlayingStateToRN(player: player)
+        }
+    }
+    
+    func sendNowPlayingStateToRN(player: MPMusicPlayerController) {
+        let state: NowPlayingState
+        
+        if let media = player.nowPlayingItem {
+            let info = NowPlayingInfo(player: player, item: media)
+            state = .init(isPlaying: true, item: info)
+        } else {
+            state = .init(isPlaying: false, item: nil)
+        }
+        
+        do {
+            let encoder = JSONEncoder()
+            let jsonData = try encoder.encode(state)
+            let json = String(data: jsonData, encoding: .utf8)
             
-            if let media = player.nowPlayingItem {
-                let info = NowPlayingInfo(player: player, item: media)
-                state = .init(isPlaying: true, item: info)
-            } else {
-                state = .init(isPlaying: false, item: nil)
-            }
-            
-            do {
-                let encoder = JSONEncoder()
-                let jsonData = try encoder.encode(state)
-                let json = String(data: jsonData, encoding: .utf8)
-                
-                self.sendEvent(withName: Event.nowPlaying.rawValue, body: json)
-            } catch {
-                print(error)
-            }
+            self.sendEvent(withName: Event.nowPlaying.rawValue, body: json)
+        } catch {
+            print(error)
         }
     }
 }
