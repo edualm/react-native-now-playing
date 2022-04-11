@@ -4,8 +4,8 @@ import android.content.Intent;
 
 public class NowPlayingInfo {
 
-    Double playbackTime;
-    Double playbackDuration;
+    long playbackTime;
+    long playbackDuration;
 
     String title;
     String artist;
@@ -14,8 +14,8 @@ public class NowPlayingInfo {
     String artwork;
 
     NowPlayingInfo(Intent intent) {
-        playbackTime = (double) 0;
-        playbackDuration = intent.getDoubleExtra("duration", 0);
+        playbackTime = (long) 0;
+        playbackDuration = intent.getLongExtra("duration", 0);
 
         title = intent.getStringExtra("track");
         artist = intent.getStringExtra("artist");

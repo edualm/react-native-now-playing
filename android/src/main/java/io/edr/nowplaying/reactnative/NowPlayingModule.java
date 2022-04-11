@@ -27,6 +27,8 @@ public class NowPlayingModule extends ReactContextBaseJavaModule {
 
     private final BroadcastReceiver musicStateReceiver;
 
+    private NowPlayingState lastState = null;
+
     private int listenerCount = 0;
 
     public NowPlayingModule(ReactApplicationContext reactContext) {
@@ -37,23 +39,18 @@ public class NowPlayingModule extends ReactContextBaseJavaModule {
         musicStateReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-            if (listenerCount == 0)
-                return;
+                boolean isPlaying = intent.getBooleanExtra("playing", false);
 
-            boolean isPlaying = intent.getBooleanExtra("playing", false);
+                NowPlayingState state;
 
-            NowPlayingState state;
+                if (isPlaying)
+                    state = new NowPlayingState(true, new NowPlayingInfo(intent));
+                else
+                    state = new NowPlayingState(false, null);
 
-            if (isPlaying)
-                state = new NowPlayingState(true, new NowPlayingInfo(intent));
-            else
-                state = new NowPlayingState(false, null);
+                lastState = state;
 
-            Gson gson = new Gson();
-
-            gson.toJson(state);
-
-            sendEvent("NOW_PLAYING", (new Gson()).toJson(state));
+                broadcast();
             }
         };
 
@@ -81,12 +78,25 @@ public class NowPlayingModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void startObserving() {
         listenerCount++;
+
+        broadcast();
     }
 
     @ReactMethod
     public void stopObserving() {
         if (listenerCount > 0)
             listenerCount--;
+    }
+
+    private void broadcast() {
+        if (listenerCount == 0)
+            return;
+
+        Gson gson = new Gson();
+
+        gson.toJson(lastState);
+
+        sendEvent("NOW_PLAYING", (new Gson()).toJson(lastState));
     }
 
     private void sendEvent(String eventName,
