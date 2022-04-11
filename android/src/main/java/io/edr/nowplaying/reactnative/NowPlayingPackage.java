@@ -1,4 +1,4 @@
-package com.reactnativenowplaying;
+package io.edr.nowplaying.reactnative;
 
 import androidx.annotation.NonNull;
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import NowPlaying, { NowPlayingState } from 'react-native-now-playing';
+import NowPlaying, { NowPlayingState } from '@edualm/react-native-now-playing';
 
 export default function App() {
   const [state, setState] = React.useState<NowPlayingState | undefined>();

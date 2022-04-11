@@ -3,11 +3,10 @@ buildscript {
         repositories {
             google()
             mavenCentral()
-            jcenter()
         }
 
         dependencies {
-            classpath 'com.android.tools.build:gradle:3.5.3'
+            classpath 'com.android.tools.build:gradle:3.5.4'
         }
     }
 }
@@ -50,10 +49,10 @@ repositories {
     }
     google()
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation 'com.google.code.gson:gson:2.9.0'
 }
